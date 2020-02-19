@@ -11,45 +11,47 @@
 //==============================================================================
 //lets make an employee profile using closures
 
-  function makeEmployee (employeeName){
-    var employee = employeeName;
+  function employee (name, salary){
+    var name = name;
+    var salary =salary;
     return {
-      addEmployee: function (name, salary) {
-        return {
-          name: name,
-          salary: salary
-        }
-      },
-      sayMyname: function  () {
+      sayMyName: function () {
         return name;
+      },
+      sayHello: function () {
+        return "hello "+ this.sayMyName();
+      },
+      increaseSalary: function (amount) {
+        salary += amount;
+        return "your salary is $"+salary;
+      },
+      addFriend: function () {
+        
       }
-    }   
+    }  
   }
-  var employeeA = makeEmployee (employeeA);
-  var employeeB = makeEmployee (employeeB);
-  var employeeC = makeEmployee (employeeC);
-  employeeA.addEmployee("jack", 100);
-  employeeB.addEmployee("Mark", 200);
-  employeeC.addEmployee("Sara", 150);
+  var employeeA = employee ("jack", 100);
+  var employeeB = employee ("Mark", 200);
+  var employeeC = employee ("Sara", 150);
+
 
 
   //create a function when invoked returns the name of that employee.
-
-  // employeeA.sayMyName(); // "jack"
-  // employeeB.sayMyName(); // "Mark"
+  console.log(employeeA.sayMyName());
+  console.log(employeeB.sayMyName());
+  //employeeA.sayMyName(); // "jack"
+  //employeeB.sayMyName(); // "Mark"
  
 
-
-
-
   //now modify that closure and add a function that says hello to the employee name;
-
-  // employeeA.sayHello(); // hello jack
-  // employeeB.sayHello(); // hello Mark
+  console.log(employeeA.sayHello());
+  console.log(employeeB.sayHello());
+  //employeeA.sayHello(); // hello jack
+  //employeeB.sayHello(); // hello Mark
 
   //modify your closure and add function increaseSalary that increases the salary for the employee by n value and return it.
   //employeeA.increaseSalary(50); // "your salary is 150$"
-
+  console.log(employeeA.increaseSalary(50));
   //how about we let jack and mark meet togther!
   //modify your closure and add function addFriend that accepts an object as a parameter, and let jack meets his friends.
 
