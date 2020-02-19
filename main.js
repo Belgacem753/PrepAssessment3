@@ -14,6 +14,7 @@
   function employee (name, salary){
     var name = name;
     var salary =salary;
+    var friends = [];
     return {
       sayMyName: function () {
         return name;
@@ -25,8 +26,28 @@
         salary += amount;
         return "your salary is $"+salary;
       },
-      addFriend: function () {
+      addFriend: function (friend) {
+      	if (friends.includes(friend.sayMyName())){
+      		friends = friends;
+      	} else {
+      		friends.push(friend.sayMyName());
+      	}
         
+        var acc =  "you just became friend with "+ friends[0];
+        if(friends.length === 1) {
+        	return acc;
+        } else if (friends.length > 1){
+        	for (var i = 1; i < friends.length; i++) {
+        		acc += " and "+ friends[i];
+        	}
+        	return acc;
+        }
+      },
+      myFriend: function() {
+      	if (friends.length ===1){
+      		return "you have "+friends.length+" friend";
+      	}
+      	return "you have "+friends.length+" friends";
       }
     }  
   }
@@ -49,15 +70,16 @@
   //employeeA.sayHello(); // hello jack
   //employeeB.sayHello(); // hello Mark
 
+
   //modify your closure and add function increaseSalary that increases the salary for the employee by n value and return it.
   //employeeA.increaseSalary(50); // "your salary is 150$"
   console.log(employeeA.increaseSalary(50));
   //how about we let jack and mark meet togther!
   //modify your closure and add function addFriend that accepts an object as a parameter, and let jack meets his friends.
-
+ 
   // employeeA.addFriend(employeeB); // "you just became friend with Mark"
   // employeeA.addFriend(employeeC); // "you just became friend with Mark and Sara"
-
+ 
   //modify your closure to tell mark how many friends does he have.
 
   // employeeA.listFriends(); // "you have 2 friends"
@@ -72,22 +94,35 @@
   function Pet (name) {
     var pet = {};
     pet.name = name;
-    pet.addPet = addPet;
+    pet.addInfo = addInfo;
+    pet.increaseAge = increaseAge;
+    pet.availability = false;
+    pet.checkState = checkState;
+    pet.changeState = changeState;
+    return pet;
   }
   
-  var addPet = function () {
-    return {
-      name: this.name
-    }
-  }
+ 
   var addInfo = function (age, owner, gender, species) {
-    return {
-      age: age,
-      owner: owner,
-      gender: gender,
-      species: species
-    }
+      this.age = age;
+      this.owner = owner;
+      this.gender = gender;
+      this.species = species; 
   }
+  var increaseAge = function (n) {
+  	this.age = this.age +n;
+  }
+  var checkState = function () {
+  	if (this.availability === true) {
+  		return true;
+  	}
+  	return false;
+  }
+
+  var changeState = function() {
+  	this.availability = !this.availability;
+  }
+
   var pet1 = Pet("doggy");
 
 
